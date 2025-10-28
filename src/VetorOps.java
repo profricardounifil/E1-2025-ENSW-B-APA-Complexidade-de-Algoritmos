@@ -51,4 +51,26 @@ public class VetorOps {
             }
         }
     }
+
+    public void selectionSort() {
+        int menor;
+        int indiceMenorElemento = 0;
+        for (int i = 0; i < this.vetor.length-1; i++) {
+            menor = this.vetor[i];
+            indiceMenorElemento = i;
+            //Encontrando o menor elemento da rodada e sua posição
+            for (int j = i; j < this.vetor.length; j++) {
+                if(this.vetor[j] < menor) {
+                    menor = this.vetor[j];
+                    indiceMenorElemento = j;
+                }
+            }
+            this.aux = this.vetor[i];
+            this.vetor[i] = menor;
+            this.vetor[indiceMenorElemento] = aux;
+        }
+
+
+
+    }
 }
