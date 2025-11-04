@@ -69,8 +69,68 @@ public class VetorOps {
             this.vetor[i] = menor;
             this.vetor[indiceMenorElemento] = aux;
         }
+    }
 
+    public void mergeSort(int inicio, int fim) {
+        if (inicio < fim) {
+            int meio = (inicio + fim) / 2;
+            mergeSort(inicio, meio);
+            mergeSort(meio + 1, fim);
+            merge(inicio, meio, fim);
+        }
+    }
 
+    public void merge(int inicio, int meio, int fim) {
+        int n1 = meio - inicio + 1;
+        int n2 = fim - meio;
 
+        int[] I = new int[n1];
+        int[] F = new int[n2];
+
+        for (int i = 0; i < n1; i++)
+            I[i] = this.vetor[inicio + i];
+        for (int j = 0; j < n2; j++)
+            F[j] = this.vetor[meio + 1 + j];
+
+        int i = 0, j = 0, k = inicio;
+        while (i < n1 && j < n2) {
+            if (I[i] <= F[j]) {
+                this.vetor[k++] = I[i++];
+            } else {
+                this.vetor[k++] = F[j++];
+            }
+        }
+
+        while (i < n1) {
+            this.vetor[k++] = I[i++];
+        }
+        while (j < n2) {
+            this.vetor[k++] = F[j++];
+        }
+    }
+
+    public void quickSort(int inicio, int fim) {
+        if (inicio < fim) {
+            int pi = particao(inicio, fim);
+            quickSort(inicio, pi - 1);
+            quickSort(pi + 1, fim);
+        }
+    }
+
+    public int particao(int inicio, int fim) {
+        int pivo = this.vetor[fim];
+        int i = inicio - 1;
+        for (int j = inicio; j < fim; j++) {
+            if (this.vetor[j] < pivo) {
+                i++;
+                int aux = this.vetor[i];
+                this.vetor[i] = this.vetor[j];
+                this.vetor[j] = aux;
+            }
+        }
+        int aux = this.vetor[i + 1];
+        this.vetor[i + 1] = this.vetor[fim];
+        this.vetor[fim] = aux;
+        return i + 1;
     }
 }

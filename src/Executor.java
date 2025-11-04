@@ -3,7 +3,7 @@ public class Executor {
         VetorOps vetorOps = new VetorOps();
         vetorOps.preencherVetor();
         vetorOps.exibirVetor();
-        vetorOps.selectionSort();
+        vetorOps.mergeSort(0, vetorOps.vetor.length);
         vetorOps.exibirVetor();
     }
 }
